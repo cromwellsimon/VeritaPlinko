@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b1dgrnbcafbd4"]
+
+[ext_resource type="Script" uid="uid://2j4kyal07e3g" path="res://Scenes/UI/UI.cs" id="1_s86y4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s86y4"]
+font_size = 64
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="UI" type="Control" unique_id=1227969115 node_paths=PackedStringArray("ScoreLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s86y4")
+ScoreLabel = NodePath("ScoreCounter")
+
+[node name="ScoreCounter" type="Label" parent="." unique_id=988838553]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "0"
+label_settings = SubResource("LabelSettings_s86y4")
+horizontal_alignment = 1

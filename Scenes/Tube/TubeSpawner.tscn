@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bxvtufk7kcwt5"]
+
+[ext_resource type="Script" uid="uid://g0bs4yh0schf" path="res://Scenes/Tube/TubeSpawner.cs" id="1_rt1k1"]
+[ext_resource type="PackedScene" uid="uid://f4uw1j0l5r4i" path="res://Scenes/Tube/Tube.tscn" id="2_7ufm2"]
+
+[node name="TubeSpawner" type="Node3D" unique_id=228996798]
+script = ExtResource("1_rt1k1")
+Tube = ExtResource("2_7ufm2")

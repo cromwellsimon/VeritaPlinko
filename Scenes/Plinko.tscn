@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://dkmrnj1xnbfcx"]
+
+[ext_resource type="Script" uid="uid://vxyms842vf3y" path="res://Scenes/Plinko.cs" id="1_cnrxi"]
+[ext_resource type="PackedScene" uid="uid://fukhakp2lx1u" path="res://Scenes/Ball/Ball.tscn" id="1_ljwm7"]
+[ext_resource type="PackedScene" uid="uid://bm7al5jo33klc" path="res://Scenes/Cube/Cube.tscn" id="4_sugur"]
+[ext_resource type="PackedScene" uid="uid://bxvtufk7kcwt5" path="res://Scenes/Tube/TubeSpawner.tscn" id="5_kkytn"]
+[ext_resource type="PackedScene" uid="uid://bxgnuejdon31y" path="res://Scenes/Goal/Goal.tscn" id="6_i58e0"]
+[ext_resource type="PackedScene" uid="uid://b1dgrnbcafbd4" path="res://Scenes/UI/UI.tscn" id="6_r2qfj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r150o"]
+
+[sub_resource type="Sky" id="Sky_r150o"]
+sky_material = SubResource("ProceduralSkyMaterial_r150o")
+
+[sub_resource type="Environment" id="Environment_r150o"]
+background_mode = 2
+background_color = Color(0.5372549, 0.8117647, 0.9411765, 1)
+background_energy_multiplier = 2.0
+sky = SubResource("Sky_r150o")
+
+[sub_resource type="BoxMesh" id="BoxMesh_kkytn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r2qfj"]
+albedo_color = Color(0.5372549, 0.8117647, 0.9411765, 1)
+
+[node name="Plinko" type="Node3D" unique_id=1027180084 node_paths=PackedStringArray("Ball", "Goals", "UI")]
+script = ExtResource("1_cnrxi")
+Ball = NodePath("Ball")
+Goals = NodePath("Goals")
+UI = NodePath("UI")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=182826077]
+environment = SubResource("Environment_r150o")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=249420376]
+transform = Transform3D(0.9181362, 0.3754947, -0.12660879, -0.28464732, 0.84723383, 0.44852054, 0.27568433, -0.37576413, 0.8847593, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=829348107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 30)
+keep_aspect = 0
+fov = 45.0
+size = 10.007
+
+[node name="Ball" parent="." unique_id=1596671398 instance=ExtResource("1_ljwm7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+
+[node name="Walls" type="Node3D" parent="." unique_id=541179990]
+
+[node name="LeftWall" parent="Walls" unique_id=2132989509 instance=ExtResource("4_sugur")]
+transform = Transform3D(1, 0, 0, 0, 20, 0, 0, 0, 1.1, -11, 0, 0)
+
+[node name="RightWall" parent="Walls" unique_id=731252024 instance=ExtResource("4_sugur")]
+transform = Transform3D(0.9998157, -0.38394886, 0, 0.019197444, 19.996315, 0, 0, 0, 1, 11, 0, 0)
+
+[node name="BackWall" type="Node3D" parent="Walls" unique_id=1857200183]
+transform = Transform3D(23, 0, 0, 0, 20, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/BackWall" unique_id=2116241833]
+mesh = SubResource("BoxMesh_kkytn")
+surface_material_override/0 = SubResource("StandardMaterial3D_r2qfj")
+
+[node name="TubeSpawner" parent="." unique_id=228996798 instance=ExtResource("5_kkytn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1, 7, -0.5)
+Gap = Vector2(2.025, -2)
+Count = Vector2i(11, 6)
+
+[node name="Goals" type="Node3D" parent="." unique_id=1391678575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="Goal" parent="Goals" unique_id=289994914 instance=ExtResource("6_i58e0")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+Color = Color(0, 0.98803645, 0, 0.90000004)
+
+[node name="Left" type="Node3D" parent="Goals" unique_id=1610213873]
+
+[node name="Goal3" parent="Goals/Left" unique_id=556866484 instance=ExtResource("6_i58e0")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+Value = 1
+Color = Color(0, 0, 0, 0.9019608)
+
+[node name="Goal4" parent="Goals/Left" unique_id=96593361 instance=ExtResource("6_i58e0")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+Value = 25
+Color = Color(0, 0, 1, 0.9019608)
+
+[node name="Goal6" parent="Goals/Left" unique_id=1281443348 instance=ExtResource("6_i58e0")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+Value = -25
+Color = Color(1, 0, 0.16007765, 0.90200007)
+
+[node name="Goal7" parent="Goals/Left" unique_id=1728263684 instance=ExtResource("6_i58e0")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+Value = 25
+Color = Color(0, 0, 1, 0.90200007)
+
+[node name="Goal8" parent="Goals/Left" unique_id=1495597004 instance=ExtResource("6_i58e0")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+Value = 1
+Color = Color(0, 0, 0.03876, 0.90200007)
+
+[node name="Right" type="Node3D" parent="Goals" unique_id=1018360901]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Goal3" parent="Goals/Right" unique_id=1218372468 instance=ExtResource("6_i58e0")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+Value = 1
+Color = Color(0, 0, 0, 0.9019608)
+
+[node name="Goal4" parent="Goals/Right" unique_id=687440041 instance=ExtResource("6_i58e0")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+Value = 25
+Color = Color(0, 0, 1, 0.9019608)
+
+[node name="Goal6" parent="Goals/Right" unique_id=1784560021 instance=ExtResource("6_i58e0")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+Value = -25
+Color = Color(1, 0, 0.16007765, 0.90200007)
+
+[node name="Goal7" parent="Goals/Right" unique_id=433579902 instance=ExtResource("6_i58e0")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+Value = 25
+Color = Color(0, 0, 1, 0.90200007)
+
+[node name="Goal8" parent="Goals/Right" unique_id=60628677 instance=ExtResource("6_i58e0")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+Value = 1
+Color = Color(0, 0, 0.03876, 0.90200007)
+
+[node name="UI" parent="." unique_id=1227969115 instance=ExtResource("6_r2qfj")]

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://fukhakp2lx1u"]
+
+[ext_resource type="Script" uid="uid://x1cm361phgg6" path="res://Scenes/Ball/Ball.cs" id="1_m5awi"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rcvud"]
+bounce = 0.9
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m5awi"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_xuwor"]
+
+[node name="Ball" type="Node3D" unique_id=1596671398 node_paths=PackedStringArray("RigidBody")]
+script = ExtResource("1_m5awi")
+RigidBody = NodePath("RigidBody3D")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1756738815]
+axis_lock_linear_z = true
+physics_material_override = SubResource("PhysicsMaterial_rcvud")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1226740348]
+shape = SubResource("SphereShape3D_m5awi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=1334118498]
+mesh = SubResource("SphereMesh_xuwor")

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://f4uw1j0l5r4i"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6mqu2"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0oekj"]
+
+[node name="Tube" type="Node3D" unique_id=1607359895]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2109275569]
+transform = Transform3D(0.25, 0, 0, 0, -2.1855694e-08, -0.25, 0, 0.5, -1.0927847e-08, 0, 0, 0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=820513584]
+mesh = SubResource("CylinderMesh_6mqu2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1777876687]
+shape = SubResource("CylinderShape3D_0oekj")
