@@ -21,7 +21,10 @@ public partial class Goal : Node3D
 		Mesh.SetSurfaceOverrideMaterial(0, material);
 		CollisionArea.BodyEntered += (other) =>
 		{
-			EmitSignalGoalEntered(Value);
+			if (other.GetParent() is Ball)
+			{
+				EmitSignalGoalEntered(Value);
+			}
 		};
 	}
 }
